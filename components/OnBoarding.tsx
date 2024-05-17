@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Svg1 from "./svg/Svg1";
 
 export default function OnBoardingScreen() {
-  const Navigation = useNavigation()
+  const Navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <View style={styles.svgContainer}>
@@ -20,15 +20,16 @@ export default function OnBoardingScreen() {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress ={()=> Navigation.navigate("onBoarding1")}
-          style={[styles.button]}>
-   
-            <Text style={styles.buttonText}> Get Started</Text>
+          <TouchableOpacity
+            onPress={() => (Navigation as any).navigate("onBoarding1")}
+            style={[styles.button]}
+          >
+            <Text style={styles.buttonText}> Get Started </Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -93,4 +94,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-})
+});
