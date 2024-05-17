@@ -24,7 +24,7 @@ export default function OnBoardingScreen1() {
             <Text style={styles.text1}>Don't have an account? </Text>
           </View>
           <View>
-            <TouchableOpacity >
+            <TouchableOpacity onPress ={()=> Navigation.navigate("home")} >
               <Text style={styles.text2}>Sign Up</Text>
             </TouchableOpacity>
           </View>

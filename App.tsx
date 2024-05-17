@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer,useNavigation } from '@react-navigation/native';
 import OnBoardingScreen from './components/OnBoarding';
 import OnBoardingScreen1 from './components/OnBoarding1';
+import HomeScreen from './components/home/Home';
 
 
 export default function App() {
@@ -25,6 +26,13 @@ export default function App() {
           headerShown: false,
         }}
         component={OnBoardingScreen1}
+      />
+      <Stack.Screen
+        name="home"
+        options={{
+          headerShown: false,
+        }}
+        component={HomeScreen}
       />
         </Stack.Navigator>
   </NavigationContainer>
