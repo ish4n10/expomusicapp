@@ -3,24 +3,24 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react"
 
 export default function RoomNavigatorBar() {
-  const Navigation = useNavigation()
+  const Navigation = useNavigation();
   const [color, setColor] = useState(false)
   return (
     <View style={styles.topBarContainer}>
       <View style = {styles.topBar}>
         
         <TouchableOpacity onPress={()=>setColor(!color)}
-        // style ={{backgroundColor:color?'#915DFF':'#1B1130',
+        
         style = {[styles.button,{backgroundColor:color?'#915DFF':'#1B1130'}]}
             
           >
-          <Text style = {styles.text}>Live Room</Text>
+          <Text style = {[styles.text,{color:color ? '#fff' : '#915DFF'}]}>Live Room</Text>
         </TouchableOpacity>
         
     
         <TouchableOpacity onPress={()=>setColor(!color)}
         style = {[styles.button,{backgroundColor:!color?'#915DFF':'#1B1130'}]} >
-          <Text style = {styles.text}>Create/Join </Text>
+          <Text style = {[styles.text,{color:!color ? '#fff' : '#915DFF'}]}>Create/Join </Text>
         </TouchableOpacity>
         </View>
       
