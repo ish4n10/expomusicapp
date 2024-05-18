@@ -57,7 +57,10 @@ function Signup() {
           />
         </View>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => (Navigation as any).navigate("CreateRoom")}
+      >
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </View>
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
   },
 });

@@ -5,6 +5,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import OnBoardingScreen from "./components/OnBoarding";
 import OnBoardingScreen1 from "./components/OnBoarding1";
 import Signup from "./components/Signup";
+import CreateRoom from "./components/CreateRoom";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -32,6 +33,13 @@ export default function App() {
             headerShown: false,
           }}
           component={Signup}
+        />
+        <Stack.Screen
+          name="CreateRoom"
+          options={{
+            headerShown: false,
+          }}
+          component={CreateRoom}
         />
       </Stack.Navigator>
     </NavigationContainer>
