@@ -200,6 +200,7 @@ function CreateRoom() {
             style={styles.input}
             placeholder="Enter room code"
             placeholderTextColor="#36225F"
+            keyboardType="number-pad"
           ></TextInput>
 
           <TouchableOpacity style={styles.button2}>
