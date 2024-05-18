@@ -9,15 +9,29 @@ import {
   TouchableOpacity,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  TextInput,
+  StatusBar,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import RadioForm from "react-native-simple-radio-button";
 
+import RadioForm from "react-native-simple-radio-button";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import JoinRoom from "./JoinRoom";
+import Modal from "react-native-modal";
+const screenHeight = Dimensions.get("window").height;
 function CreateRoom() {
+  const navigation = useNavigation();
   const screenWidth = Dimensions.get("window").width;
+
   const [activeIndex, setActiveIndex] = useState(0);
   const flatlistRef = useRef();
   const [value, setValue] = useState(0);
+  const [selected, setSelected] = useState();
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    StatusBar.setBarStyle("light-content");
+  });
+
   useEffect(() => {
     let interval = setInterval(() => {
       if (activeIndex === imgData.length - 1) {
@@ -68,12 +82,12 @@ function CreateRoom() {
           source={item.image}
           style={{
             top: 40,
-            height: 200,
+            height: 220,
             width: screenWidth,
             borderRadius: 30,
             borderWidth: 1,
             borderColor: "#915DFF",
-            resizeMode: "cover",
+            resizeMode: "contain",
           }}
         />
       </View>
@@ -159,10 +173,40 @@ function CreateRoom() {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button]}>
+        <TouchableOpacity
+          style={[styles.button]}
+          onPress={() => setOpen(!open)}
+        >
           <Text style={styles.buttonText}> Create Room </Text>
         </TouchableOpacity>
       </View>
+      {/* {selected && <JoinRoom />} */}
+      <Modal
+        isVisible={open}
+        onBackButtonPress={() => setOpen(!open)}
+        onBackdropPress={() => setOpen(!open)}
+        animationInTiming={0}
+        animationIn={"bounceInLeft"}
+        animationOut={"bounceOutRight"}
+        backdropTransitionInTiming={0}
+        style={styles.modalCon}
+      >
+        <View style={styles.container1}>
+          <Text style={{ color: "white", fontSize: 26, top: 10 }}>
+            Join Room
+          </Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Enter room code"
+            placeholderTextColor="#36225F"
+          ></TextInput>
+
+          <TouchableOpacity style={styles.button2}>
+            <Text style={styles.buttonText1}>Join Room</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -234,6 +278,59 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  modalCon: {
+    flex: 1,
+    margin: 0,
+    justifyContent: "flex-end",
+  },
+
+  container1: {
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: screenHeight * 0.4,
+    width: "100%",
+    backgroundColor: "#1B1130",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  input: {
+    color: "white",
+    fontSize: 20,
+    borderWidth: 1,
+    borderColor: "#915DFF",
+    height: "20%",
+    width: "90%",
+    borderRadius: 18,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  button1: {
+    width: "50%",
+    backgroundColor: "#915DFF",
+    height: 64,
+    marginTop: 120,
+    borderRadius: 18,
+
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button2: {
+    width: "50%",
+    backgroundColor: "#915DFF",
+    height: 64,
+
+    borderRadius: 18,
+
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText1: {
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",

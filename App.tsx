@@ -6,6 +6,7 @@ import OnBoardingScreen from "./components/OnBoarding";
 import OnBoardingScreen1 from "./components/OnBoarding1";
 import Signup from "./components/Signup";
 import CreateRoom from "./components/CreateRoom";
+import JoinRoom from "./components/JoinRoom";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -41,6 +42,13 @@ export default function App() {
           }}
           component={CreateRoom}
         />
+        {/* <Stack.Screen
+          name="JoinRoom"
+          options={{
+            headerShown: false,
+          }}
+          component={JoinRoom}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
