@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   topBar: {
-    width: "80%",
+    width: "90%",
     backgroundColor: "#1B1130",
     height: 50,
     borderRadius: 12,

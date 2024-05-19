@@ -14,7 +14,7 @@ export default function App() {
 
   return (
   <NavigationContainer>
-     <Stack.Navigator initialRouteName="home">
+     <Stack.Navigator initialRouteName="onBoarding">
      <Stack.Screen
           name="onBoarding"
           options={{

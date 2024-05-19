@@ -1,7 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 // import Svg2 from './svg/Svg2';
 import Svg1 from "./svg/Svg1"
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 export default function OnBoardingScreen1() {
   const Navigation = useNavigation()
@@ -12,11 +15,27 @@ export default function OnBoardingScreen1() {
       </View>
       <View style={styles.Container}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.button]}>
+          <TouchableOpacity
+            onPress={() => Navigation.navigate("home")}
+            style={[styles.button]}
+          >
             <Text style={styles.buttonText}> Continue via Google</Text>
+            <FontAwesomeIcon
+            icon={faGoogle}
+            size={22}
+            color='#fff'
+          />
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button1]}>
+          <TouchableOpacity
+            onPress={() => Navigation.navigate("home")}
+            style={[styles.button]}
+          >
             <Text style={styles.buttonText}> Continue via Facebook</Text>
+            <FontAwesomeIcon
+            icon={faFacebook}
+            size={22}
+            color='#fff'
+          />
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
@@ -24,7 +43,7 @@ export default function OnBoardingScreen1() {
             <Text style={styles.text1}>Don't have an account? </Text>
           </View>
           <View>
-            <TouchableOpacity onPress ={()=> Navigation.navigate("home")} >
+            <TouchableOpacity onPress={() => Navigation.navigate("home")}>
               <Text style={styles.text2}>Sign Up</Text>
             </TouchableOpacity>
           </View>
@@ -75,6 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#110B1F",
     justifyContent: "center",
     alignItems: "center",
+    gap:30,
   },
   button: {
     width: "80%",
@@ -83,6 +103,8 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection:'row',
+    gap:10,
   },
   button1: {
     width: "80%",
@@ -103,6 +125,6 @@ const styles = StyleSheet.create({
     height: "40%",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection:'row',
+    flexDirection: "row",
   },
 })

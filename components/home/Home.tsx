@@ -1,5 +1,4 @@
-import {
-  StatusBar,
+import {  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -7,8 +6,9 @@ import {
   Dimensions,
   ScrollView,
   Image,
+  FlatList,
 } from "react-native"
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import RoomNavigatorBar from "./RoomNavigator"
 import NavBar from "./AppNavBar"
 import { useEffect, useState } from "react"
@@ -16,63 +16,95 @@ import { useEffect, useState } from "react"
 export default function HomeScreen() {
   const Navigation = useNavigation()
   const [activeTab, setActiveTab] = useState("live")
+  const [rooms, setRooms] = useState([])
+  const [loading, setLoading] = useState(false)
+  const range = 3;
 
   useEffect(() => {
     StatusBar.setHidden(false)
     StatusBar.setTranslucent(false)
     StatusBar.setBackgroundColor("#110B1F")
     StatusBar.setBarStyle("light-content")
-  })
+    loadMoreRooms()
+  }, [])
+
+  const loadMoreRooms = () => {
+    if (loading || rooms.length >= range) return
+    setLoading(true)
+
+    const newRooms = Array.from({ length: range }, (_, i) => ({
+      id: (rooms.length + i + 1).toString(),
+      image: require("./../../assets/image1.png"),
+      location: "Nigeria Falls",
+      roomOwner: "Room Owner",
+      participantsCount: 678,
+    }))
+
+    setRooms((prevRooms) => [...prevRooms, ...newRooms])
+    setLoading(false)
+  }
+
+  const renderRoom = ({ item }) => (
+    <View style={styles.roomContainer}>
+      <TouchableOpacity activeOpacity={0.7} style={[styles.room]}>
+        <Image source={item.image} style={styles.img} />
+        <View style={styles.room1}></View>
+        <View style={styles.container1}>
+          <View style={styles.location}>
+            <Text style={styles.text}>{item.location}</Text>
+          </View>
+          <View style={styles.container2}>
+            <View style={styles.person}>
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img1}
+              />
+              <Text style={styles.text1}>{item.roomOwner}</Text>
+            </View>
+            <View style={styles.person1}>
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img2}
+              />
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img2}
+              />
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img2}
+              />
+              <View style={styles.count}>
+                <Text style={styles.text2}>{item.participantsCount}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
+  )
+
   return (
     <View style={styles.container}>
       <RoomNavigatorBar setHomeTab={setActiveTab} />
-      {activeTab == "live" && (
-        <ScrollView style={{ flex: 1, width: "100%" }}>
-          <View style={styles.roomContainer}>
-            <TouchableOpacity activeOpacity={0.7} style={[styles.room]}>
-              <Image
-                source={require("./../../assets/image1.png")}
-                style={styles.img}
-              />
-              <View style={styles.room1}></View>
-              <View style={styles.container1}>
-                <View style={styles.location}>
-                  <Text style={styles.text}>Nigeria Falls</Text>
-                </View>
-                <View style={styles.container2}>
-                  <View style={styles.person}>
-                    <Image
-                      source={require("./../../assets/person.jpg")}
-                      style={styles.img1}
-                    />
-
-                    <Text style={styles.text1}>Room Owner</Text>
-                  </View>
-                  <View style={styles.person1}>
-                    <Image
-                      source={require("./../../assets/person.jpg")}
-                      style={styles.img2}
-                    />
-                    <Image
-                      source={require("./../../assets/person.jpg")}
-                      style={styles.img2}
-                    />
-                    <Image
-                      source={require("./../../assets/person.jpg")}
-                      style={styles.img2}
-                    />
-
-                    <View style={styles.count}>
-                      <Text style={styles.text2}>678</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+      {activeTab === "live" && (
+        <FlatList
+          data={rooms}
+          renderItem={renderRoom}
+          keyExtractor={(item) => item.id}
+          style={{ flex: 1, width: "100%" }}
+        />
       )}
-      {activeTab == "join" && <></>}
+      {activeTab === "join" && (
+        <View style={styles.joinRoomContainer}>
+          <TouchableOpacity style={[styles.button]}>
+            <Text style={styles.buttonText}> Create Room</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button1]}>
+            <Text style={styles.buttonText}> Join Room</Text>
+          </TouchableOpacity>
+        </View>
+      )}
       <NavBar />
     </View>
   )
@@ -161,7 +193,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
- 
   text: {
     fontSize: 18,
     fontWeight: "bold",
@@ -177,7 +208,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#fff",
   },
-
   count: {
     backgroundColor: "#915DFF60",
     borderRadius: 18,
@@ -185,5 +215,37 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: "center",
     alignItems: "center",
+  },
+  loadingText: {
+    color: "#fff",
+    textAlign: "center",
+    padding: 10,
+  },
+  joinRoomContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    width: "80%",
+    backgroundColor: "#915DFF",
+    height: 64,
+    borderRadius: 18,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button1: {
+    width: "80%",
+    backgroundColor: "#915DFF",
+    height: 64,
+    borderRadius: 18,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 30,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
   },
 })
