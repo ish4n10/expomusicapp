@@ -3,8 +3,8 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 // import Svg2 from './svg/Svg2';
 import Svg1 from "./svg/Svg1"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle,faFacebook  } from '@fortawesome/free-brands-svg-icons';
+
 
 export default function OnBoardingScreen1() {
   const Navigation = useNavigation()

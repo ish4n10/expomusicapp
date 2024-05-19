@@ -3,11 +3,12 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPen,faGear,faChevronRight,faCircleQuestion,faLock ,faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-
+import NavBar from "./AppNavBar"
 
 export default function ProfileScreen() {
   return (
     <View style={styles.container}>
+      <View style ={styles.wrap}>
       <View style={styles.profileContainer}>
         <Image
           source={require("./../../assets/person.jpg")}
@@ -81,6 +82,9 @@ export default function ProfileScreen() {
             </View>
         </TouchableOpacity>
       </View>
+      </View>
+      <NavBar/>
+      
     </View>
   )
 }
@@ -91,6 +95,13 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "#110B1F",
     gap: 15,
+    justifyContent:'space-between',
+  },
+  wrap:{
+    alignItems: "center",
+    height: '50%',
+    gap: 15,
+    width:'100%',
   },
   profileContainer: {
     height: 90,

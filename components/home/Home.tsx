@@ -18,7 +18,7 @@ export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState("live")
   const [rooms, setRooms] = useState([])
   const [loading, setLoading] = useState(false)
-  const range = 3;
+  const range = 4;
 
   useEffect(() => {
     StatusBar.setHidden(false)

@@ -2,10 +2,11 @@ import React from "react"
 import { StyleSheet, Text, TouchableOpacity, View, Image ,FlatList,StatusBar} from "react-native"
 import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
+import NavBar from "./AppNavBar"
 export default function FriendsScreen() {
     const [friends, setFriends] = useState([])
   const [loading, setLoading] = useState(false)
-  const range = 5;
+  const range = 10;
   useEffect(() => {
     StatusBar.setHidden(false)
     StatusBar.setTranslucent(false)
@@ -30,6 +31,7 @@ export default function FriendsScreen() {
   }
   const renderFriend= ({ item }) => (
     <View style={styles.profileContainer}>
+        <View style = {styles.container1}>
         <Image
           source={item.image}
           style={styles.img}
@@ -43,6 +45,7 @@ export default function FriendsScreen() {
           </TouchableOpacity>
         </View>
       </View>
+      </View>
   )
   
   return (
@@ -53,6 +56,7 @@ export default function FriendsScreen() {
           keyExtractor={(item) => item.id}
           style={{ flex: 1, width: "100%" }}
         />
+        <NavBar/>
     </View>
   )
 }
@@ -60,17 +64,30 @@ export default function FriendsScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    justifyContent:'center',
     height: "100%",
     backgroundColor: "#110B1F",
     gap: 15,
+    
   },
-  profileContainer: {
+  container1: {
     height: 90,
     width: "90%",
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
     gap: 10,
+    
+    
+  },
+  profileContainer: {
+    height: 90,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 10,
+  
   },
   img: {
     height: 50,

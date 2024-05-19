@@ -2,10 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faHome } from "@fortawesome/free-solid-svg-icons"
-import { faUserGroup } from "@fortawesome/free-solid-svg-icons"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-import HomeScreen from './Home';
+import { faHome,faUserGroup,faUser } from "@fortawesome/free-solid-svg-icons"
+
 
 export default function NavBar() {
   const Navigation = useNavigation()
@@ -17,7 +15,10 @@ export default function NavBar() {
       <View style={styles.navBar}>
         
         <TouchableOpacity
-          onPress={() => setActiveButton("home")}
+          onPress={() => {
+            setActiveButton("Home")
+            Navigation.navigate("home")
+          }}
           style={styles.button}
         >
           <FontAwesomeIcon
