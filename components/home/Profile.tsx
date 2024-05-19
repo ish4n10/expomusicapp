@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 16,
-    fontWeight: "condensed",
+    fontWeight: "400",
     color: "#915DFF",
   },
 
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 18,
-    fontWeight: "condensed",
+    fontWeight: "400",
     color: "#fff",
   },
   container2: {
