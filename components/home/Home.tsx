@@ -9,16 +9,18 @@ import {  StatusBar,
   FlatList,
 } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import RoomNavigatorBar from "./RoomNavigator"
-import NavBar from "./AppNavBar"
+import RoomNavigatorBar from "./RoomNavigatorBar"
+import NavBar from "../common/AppNavBar"
 import { useEffect, useState } from "react"
+import JoinRoomModal from "../JoinRoomModal"
 
-export default function HomeScreen() {
-  const Navigation = useNavigation()
+export default function Home() {
+  const navigation = useNavigation()
   const [activeTab, setActiveTab] = useState("live")
   const [rooms, setRooms] = useState([])
   const [loading, setLoading] = useState(false)
-  const range = 4;
+  const [openJoinModal, setOpenJoinModal] = useState(false);
+  const range = 6;
 
   useEffect(() => {
     StatusBar.setHidden(false)
@@ -97,12 +99,17 @@ export default function HomeScreen() {
       )}
       {activeTab === "join" && (
         <View style={styles.joinRoomContainer}>
-          <TouchableOpacity style={[styles.button]}>
+          <TouchableOpacity
+          onPress={() => navigation.navigate('CreateRoom')}
+           style={styles.button}>
             <Text style={styles.buttonText}> Create Room</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button1]}>
+          <TouchableOpacity
+           onPress={() => setOpenJoinModal(!openJoinModal)}
+           style={styles.button1}>
             <Text style={styles.buttonText}> Join Room</Text>
           </TouchableOpacity>
+          <JoinRoomModal open={openJoinModal} setOpen={setOpenJoinModal} />
         </View>
       )}
       <NavBar />
@@ -141,7 +148,7 @@ const styles = StyleSheet.create({
   roomContainer: {
     width: "100%",
     height: 142,
-    marginTop: 30,
+    marginTop: 15,
     justifyContent: "center",
     alignItems: "center",
   },

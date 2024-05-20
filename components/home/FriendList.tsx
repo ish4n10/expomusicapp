@@ -2,8 +2,8 @@ import React from "react"
 import { StyleSheet, Text, TouchableOpacity, View, Image ,FlatList,StatusBar} from "react-native"
 import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
-import NavBar from "./AppNavBar"
-export default function FriendsScreen() {
+import NavBar from "../common/AppNavBar"
+export default function FriendList() {
     const [friends, setFriends] = useState([])
   const [loading, setLoading] = useState(false)
   const range = 10;

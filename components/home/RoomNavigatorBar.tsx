@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: "center",
     alignItems: "center",
+    marginVertical: 10,
   },
   topBar: {
     width: "90%",

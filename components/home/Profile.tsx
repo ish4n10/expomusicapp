@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPen,faGear,faChevronRight,faCircleQuestion,faLock ,faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import NavBar from "./AppNavBar"
+import NavBar from "../common/AppNavBar"
 
-export default function ProfileScreen() {
+export default function Profile() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style ={styles.wrap}>
@@ -26,7 +27,7 @@ export default function ProfileScreen() {
         </View>
       </View>
       <View style={styles.container1}>
-        <TouchableOpacity style={[styles.optionContainer]}>
+        <TouchableOpacity style={styles.optionContainer}>
           <View style={styles.option}>
             <FontAwesomeIcon icon={faGear} 
             size={18}
@@ -39,7 +40,7 @@ export default function ProfileScreen() {
             color="#7B7979" />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.optionContainer]}>
+        <TouchableOpacity style={styles.optionContainer}>
           <View style={styles.option}>
             <FontAwesomeIcon icon={faCircleQuestion} 
             size={18}
@@ -52,7 +53,7 @@ export default function ProfileScreen() {
             color="#7B7979" />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.optionContainer]}>
+        <TouchableOpacity style={styles.optionContainer}>
           <View style={styles.option}>
             <FontAwesomeIcon icon={faLock} 
             size={18}
@@ -68,7 +69,9 @@ export default function ProfileScreen() {
 
       </View>
       <View style ={styles.container2}>
-      <TouchableOpacity style={[styles.optionContainer1]}>
+      <TouchableOpacity 
+        onPress={() => navigation.navigate('OnBoarding')}
+        style={[styles.optionContainer1]}>
           <View style={styles.option}>
             <FontAwesomeIcon icon={faRightFromBracket} 
             size={18}
@@ -86,8 +89,8 @@ export default function ProfileScreen() {
       <NavBar/>
       
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -110,6 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 10,
+    marginVertical: 20,
   },
   img: {
     height: 70,

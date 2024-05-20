@@ -1,60 +1,72 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer,useNavigation } from '@react-navigation/native';
-import OnBoardingScreen from './components/OnBoarding';
-import OnBoardingScreen1 from './components/OnBoarding1';
-import HomeScreen from './components/home/Home';
-import ProfileScreen from './components/home/Profile';
-import FriendsScreen from './components/home/Friends';
-
+import { NavigationContainer } from '@react-navigation/native';
+import CreateRoom from './components/CreateRoom';
+import Home from './components/home/Home';
+import OnBoarding from './components/OnBoarding';
+import OnBoarding1 from './components/OnBoarding1';
+import FriendList from './components/home/FriendList';
+import JoinRoomModal from './components/JoinRoomModal';
+import Signup from './components/Signup';
+import Profile from './components/home/Profile';
+import { StatusBar } from 'react-native';
+import AppHeader from './components/common/AppHeader';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
-
+  useEffect(() => {
+    StatusBar.setBarStyle('light-content');
+  })
   return (
   <NavigationContainer>
-     <Stack.Navigator 
-     screenOptions={{
-      animation: 'slide_from_right'
-     }}
-     initialRouteName="onBoarding">
-     <Stack.Screen
-          name="OnBoarding"
-          options={{
-            headerShown: false,
-          }}
-          component={OnBoardingScreen}
-        />
-        <Stack.Screen
+    <Stack.Navigator 
+      screenOptions={{
+        animation: 'slide_from_right',
+        header: () => <AppHeader />
+      }}
+      initialRouteName="onBoarding">
+      <Stack.Screen
+        name="OnBoarding"
+        options={{
+          headerShown: false
+        }}
+        component={OnBoarding}
+      />
+      <Stack.Screen
         name="OnBoarding1"
         options={{
-          headerShown: false,
+          headerShown: false
         }}
-        component={OnBoardingScreen1}
+        component={OnBoarding1}
       />
       <Stack.Screen
-        name="home"
+        name="Signup"
         options={{
-          headerShown: false,
+          headerShown: false
         }}
-        component={HomeScreen}
+        component={Signup}
       />
       <Stack.Screen
-        name="profile"
-        options={{
-          headerShown: false,
-        }}
-        component={ProfileScreen}
+        name="Home"
+        component={Home}
       />
       <Stack.Screen
-        name="friends"
-        options={{
-          headerShown: false,
-        }}
-        component={FriendsScreen}
+        name="Profile"
+        component={Profile}
       />
-        </Stack.Navigator>
+      <Stack.Screen
+        name="FriendList"
+        component={FriendList}
+      />
+      <Stack.Screen
+        name="JoinRoom"
+        component={JoinRoomModal}
+      />
+      <Stack.Screen
+        name="CreateRoom"
+        component={CreateRoom}
+      />
+    </Stack.Navigator>
   </NavigationContainer>
   );
 }

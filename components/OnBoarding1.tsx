@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faGoogle,faFacebook  } from '@fortawesome/free-brands-svg-icons';
 
 
-export default function OnBoardingScreen1() {
+export default function OnBoarding1() {
   const Navigation = useNavigation()
   return (
     <View style={styles.mainContainer}>
@@ -16,7 +16,7 @@ export default function OnBoardingScreen1() {
       <View style={styles.Container}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={() => Navigation.navigate("home")}
+            onPress={() => Navigation.navigate("Home")}
             style={[styles.button]}
           >
             <Text style={styles.buttonText}> Continue via Google</Text>
@@ -27,7 +27,7 @@ export default function OnBoardingScreen1() {
           />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => Navigation.navigate("home")}
+            onPress={() => Navigation.navigate("Home")}
             style={[styles.button]}
           >
             <Text style={styles.buttonText}> Continue via Facebook</Text>
@@ -43,7 +43,7 @@ export default function OnBoardingScreen1() {
             <Text style={styles.text1}>Don't have an account? </Text>
           </View>
           <View>
-            <TouchableOpacity onPress={() => Navigation.navigate("home")}>
+            <TouchableOpacity onPress={() => Navigation.navigate("Signup")}>
               <Text style={styles.text2}>Sign Up</Text>
             </TouchableOpacity>
           </View>

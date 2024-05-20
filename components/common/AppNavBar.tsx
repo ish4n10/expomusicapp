@@ -5,19 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faHome,faUserGroup,faUser } from "@fortawesome/free-solid-svg-icons"
 
 
-export default function NavBar() {
-  const Navigation = useNavigation()
-  
-  const [activeButton, setActiveButton] = useState('home');
+export default function AppNavBar() {
+  const navigation = useNavigation()
+  console.log(navigation.getState())
+  const [activeButton, setActiveButton] = useState("home");
 
   return (
     <View style={styles.navContainer}>
       <View style={styles.navBar}>
-        
         <TouchableOpacity
           onPress={() => {
-            setActiveButton("Home")
-            Navigation.navigate("home")
+            setActiveButton("Home");
+            navigation.navigate("Home");
           }}
           style={styles.button}
         >
@@ -38,8 +37,8 @@ export default function NavBar() {
 
         <TouchableOpacity
           onPress={() => {
-            setActiveButton("Friends")
-            Navigation.navigate("friends")
+            setActiveButton("Friends");
+            navigation.navigate("FriendList");
           }}
           style={styles.button}
         >
@@ -61,7 +60,7 @@ export default function NavBar() {
         <TouchableOpacity
           onPress={() => {
             setActiveButton("Profile")
-            Navigation.navigate("profile")
+            navigation.navigate("Profile")
           }}
           style={styles.button}
         >
