@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Svg1 from "./svg/Svg1";
-
+ 
 export default function OnBoardingScreen() {
   const navigation = useNavigation();
   return (
