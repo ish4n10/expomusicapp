@@ -11,16 +11,20 @@ export default function App() {
 
   return (
   <NavigationContainer>
-     <Stack.Navigator initialRouteName="onBoarding">
+     <Stack.Navigator 
+     screenOptions={{
+      animation: 'slide_from_right'
+     }}
+     initialRouteName="onBoarding">
      <Stack.Screen
-          name="onBoarding"
+          name="OnBoarding"
           options={{
             headerShown: false,
           }}
           component={OnBoardingScreen}
-        /> 
+        />
         <Stack.Screen
-        name="onBoarding1"
+        name="OnBoarding1"
         options={{
           headerShown: false,
         }}
