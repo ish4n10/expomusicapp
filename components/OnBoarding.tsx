@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Svg1 from "./svg/Svg1";
-
-export default function OnBoardingScreen() {
-  const Navigation = useNavigation()
+ 
+export default function OnBoarding() {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <View style={styles.svgContainer}>
@@ -14,21 +14,22 @@ export default function OnBoardingScreen() {
           <View style={styles.textContainer1}>
             <Text style={styles.text1}>Welcome to Music App!</Text>
             <Text style={styles.text2}>
-              Locate your friends, strike up a conversation, and let the music
-              unite everyone.
+              {`Locate your friends, strike up a conversation, and let the music
+              unite everyone.`}
             </Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress ={()=> Navigation.navigate("onBoarding1")}
-          style={[styles.button]}>
-   
+          <TouchableOpacity
+            onPress={() => navigation.navigate("OnBoarding1")}
+            style={styles.button}
+          >
             <Text style={styles.buttonText}> Get Started</Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -93,4 +94,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-})
+});
