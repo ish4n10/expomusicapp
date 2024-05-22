@@ -14,6 +14,7 @@ import Profile from './components/home/Profile';
 import { StatusBar } from 'react-native';
 import AppHeader from './components/common/AppHeader';
 import InsideRoomScreen from './components/InsideRoom';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ export default function App() {
     StatusBar.setBarStyle('light-content');
   })
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
   <NavigationContainer>
     <Stack.Navigator 
       screenOptions={{
@@ -79,6 +81,7 @@ export default function App() {
     </Stack.Navigator>
 
   </NavigationContainer>
+  </GestureHandlerRootView>
   );
 }
 

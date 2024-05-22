@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPhone,faMessage,faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import SlidingPanel from './SlidingPanel';
 
 export default function InsideRoomScreen() {
 
@@ -87,6 +88,7 @@ export default function InsideRoomScreen() {
       </TouchableOpacity>
       </View>
       </View>
+      <SlidingPanel/>
     </View>
   );
 
