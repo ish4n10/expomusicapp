@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { NavigationContainer, useNavigation } from "@react-navigation/native"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faPhone,faMessage,faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
@@ -61,6 +62,31 @@ export default function InsideRoomScreen() {
           description={"You are here"}
         />
       </MapView>
+      <View style = {styles.container1}> 
+      <View style = {styles.icon}> 
+      <TouchableOpacity style = {styles.circle}> 
+      <FontAwesomeIcon
+            icon={faPhone}
+            size={25}
+            color='#fff'
+          />
+      </TouchableOpacity>
+      <TouchableOpacity style = {styles.circle}> 
+      <FontAwesomeIcon
+            icon={faMessage}
+            size={25}
+            color='#fff'
+          />
+      </TouchableOpacity>
+      <TouchableOpacity style = {styles.circle}> 
+      <FontAwesomeIcon
+            icon={faHeadphonesSimple}
+            size={25}
+            color='#fff'
+          />
+      </TouchableOpacity>
+      </View>
+      </View>
     </View>
   );
 
@@ -85,4 +111,26 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: "red",
       },
+      container1:{
+        width:'100%',
+        height:'100%',
+        position:'absolute',
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+      },
+      icon:{
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        width:'25%',
+        height:'35%',
+       
+      },
+      circle:{
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#915DFF",
+        width:60,
+        height:60,
+        borderRadius:60,
+      }
 })
