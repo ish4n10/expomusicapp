@@ -15,7 +15,9 @@ import AppHeader from './components/common/AppHeader';
 export default function App() {
   const Stack = createNativeStackNavigator();
   useEffect(() => {
+    StatusBar.setTranslucent(false);
     StatusBar.setBarStyle('light-content');
+    StatusBar.setBackgroundColor('#1B1130');
   })
   return (
   <NavigationContainer>

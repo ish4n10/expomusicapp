@@ -20,14 +20,12 @@ export default function Home() {
   const [rooms, setRooms] = useState([])
   const [loading, setLoading] = useState(false)
   const [openJoinModal, setOpenJoinModal] = useState(false);
-  const range = 6;
+  const [range, setRange] = useState();
+
+  useEffect(() => setRange(6))
 
   useEffect(() => {
-    StatusBar.setHidden(false)
-    StatusBar.setTranslucent(false)
-    StatusBar.setBackgroundColor("#110B1F")
-    StatusBar.setBarStyle("light-content")
-    loadMoreRooms()
+    loadMoreRooms();
   }, [])
 
   const loadMoreRooms = () => {

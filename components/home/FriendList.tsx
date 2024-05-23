@@ -6,12 +6,12 @@ import NavBar from "../common/AppNavBar"
 export default function FriendList() {
     const [friends, setFriends] = useState([])
   const [loading, setLoading] = useState(false)
-  const range = 10;
+  const [range, setRange] = useState();
+
   useEffect(() => {
-    StatusBar.setHidden(false)
-    StatusBar.setTranslucent(false)
-    StatusBar.setBackgroundColor("#110B1F")
-    StatusBar.setBarStyle("light-content")
+    setRange(10);
+  })
+  useEffect(() => {
     loadFriends()
   }, [])
   const loadFriends = () => {

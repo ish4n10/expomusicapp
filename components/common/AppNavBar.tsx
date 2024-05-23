@@ -1,15 +1,15 @@
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
-import React, { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faHome,faUserGroup,faUser } from "@fortawesome/free-solid-svg-icons"
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faHome,faUserGroup,faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function AppNavBar() {
   const navigation = useNavigation()
   console.log(navigation.getState())
   const [activeButton, setActiveButton] = useState("home");
-
+  console.log(activeButton)
   return (
     <View style={styles.navContainer}>
       <View style={styles.navBar}>

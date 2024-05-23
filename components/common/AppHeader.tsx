@@ -5,11 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 export default function AppHeader() {
     const navigation = useNavigation();
     const headerName = navigation.getState()?.routes[navigation.getState()?.index].name;
-    // useEffect(() => {
-    // })
     return(
         <View style={styles.header}>
-        <Text style={styles.headerText}>{headerName}</Text>
+            <Text style={styles.headerText}>{headerName}</Text>
         </View>
     )
 };
