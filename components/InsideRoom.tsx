@@ -6,7 +6,7 @@ import { faPhone,faMessage,faHeadphonesSimple } from '@fortawesome/free-solid-sv
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import SlidingPanel from './SlidingPanel';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 export default function InsideRoomScreen() {
 
   const [location, setLocation] = useState(null);
@@ -44,6 +44,7 @@ export default function InsideRoomScreen() {
 
 
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <View style={styles.container}>
       <MapView
         style={styles.map}
@@ -90,6 +91,7 @@ export default function InsideRoomScreen() {
       </View>
       <SlidingPanel/>
     </View>
+    </GestureHandlerRootView>
   );
 
 }
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         position:'absolute',
-        justifyContent: "flex-end",
+        justifyContent: "center",
         alignItems: "flex-end",
       },
       icon:{
@@ -134,5 +136,5 @@ const styles = StyleSheet.create({
         width:60,
         height:60,
         borderRadius:60,
-      }
+      },
 })

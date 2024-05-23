@@ -22,7 +22,7 @@ export default function App() {
     StatusBar.setBarStyle('light-content');
   })
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    
   <NavigationContainer>
     <Stack.Navigator 
       screenOptions={{
@@ -81,7 +81,7 @@ export default function App() {
     </Stack.Navigator>
 
   </NavigationContainer>
-  </GestureHandlerRootView>
+ 
   );
 }
 
