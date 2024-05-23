@@ -29,7 +29,7 @@ export default function App() {
         animation: 'slide_from_right',
         header: () => <AppHeader />
       }}
-      initialRouteName="InsideRoom">
+      initialRouteName="Onboarding">
       <Stack.Screen
         name="OnBoarding"
         options={{

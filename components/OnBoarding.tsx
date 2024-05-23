@@ -14,8 +14,8 @@ export default function OnBoarding() {
           <View style={styles.textContainer1}>
             <Text style={styles.text1}>Welcome to Music App!</Text>
             <Text style={styles.text2}>
-              {`Locate your friends, strike up a conversation, and let the music
-              unite everyone.`}
+              Locate your friends, strike up a conversation, and let the music
+              unite everyone.
             </Text>
           </View>
         </View>

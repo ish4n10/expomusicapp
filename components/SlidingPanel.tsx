@@ -8,7 +8,7 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const { height } = Dimensions.get('window');
 export default function SlidingPanel() {
-  const translateY = useSharedValue(height * 0.7);
+  const translateY = useSharedValue(height * 0.8);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -82,9 +82,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     
   },
-  animatedStyle:{
-backgroundColor:'#1B113085',
-  },
+  
   panelHeader: {
     height: 60,
     alignItems: 'center',

@@ -11,7 +11,7 @@ import {  StatusBar,
 import { useNavigation } from "@react-navigation/native"
 import RoomNavigatorBar from "./RoomNavigatorBar"
 import NavBar from "../common/AppNavBar"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import JoinRoomModal from "../JoinRoomModal"
 
 export default function Home() {
@@ -48,7 +48,8 @@ export default function Home() {
 
   const renderRoom = ({ item }) => (
     <View style={styles.roomContainer}>
-      <TouchableOpacity activeOpacity={0.7} style={[styles.room]}>
+      <TouchableOpacity onPress={()=>navigation.navigate('InsideRoom')}
+      activeOpacity={0.7} style={[styles.room]}>
         <Image source={item.image} style={styles.img} />
         <View style={styles.room1}></View>
         <View style={styles.container1}>
