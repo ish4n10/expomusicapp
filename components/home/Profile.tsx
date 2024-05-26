@@ -1,12 +1,13 @@
-import React from "react";
+import React ,{ useEffect, useState }from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPen,faGear,faChevronRight,faCircleQuestion,faLock ,faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import NavBar from "../common/AppNavBar"
-
+import LogoutModal from '../LogoutModal'
 export default function Profile() {
   const navigation = useNavigation();
+  const [openLogoutModal, setOpenLogoutModal] = useState(false);
   return (
     <View style={styles.container}>
       <View style ={styles.wrap}>
@@ -70,7 +71,7 @@ export default function Profile() {
       </View>
       <View style ={styles.container2}>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('OnBoarding')}
+       onPress={() => setOpenLogoutModal(!openLogoutModal)}
         style={[styles.optionContainer1]}>
           <View style={styles.option}>
             <FontAwesomeIcon icon={faRightFromBracket} 
@@ -84,6 +85,7 @@ export default function Profile() {
             color="#7B7979" />
             </View>
         </TouchableOpacity>
+        <LogoutModal open ={openLogoutModal} setOpen = {setOpenLogoutModal} />
       </View>
       </View>
       <NavBar/>

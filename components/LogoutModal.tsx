@@ -10,9 +10,11 @@ import {
 import Modal from "react-native-modal";
 import { windowHeight } from "./common/Dimension";
 import { useNavigation } from '@react-navigation/native';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
-function JoinRoomModal({open, setOpen} : {open:any , setOpen: any}) {
-  const Navigation = useNavigation()
+function LogoutModal({open, setOpen} : {open:any , setOpen: any}) {
+  const Navigation = useNavigation();
+  const [color, setColor] = useState(true);
   return (
     <Modal
         isVisible={open}
@@ -25,21 +27,24 @@ function JoinRoomModal({open, setOpen} : {open:any , setOpen: any}) {
         style={styles.modalCon}
       >
         <View style={styles.container1}>
-          <Text style={styles.text}>
-            Join Room
+            <View style = {styles.txtContainer}> 
+            <Text style={styles.text}>
+            Log Out
           </Text>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Enter room code"
-            placeholderTextColor="#36225F"
-            keyboardType="number-pad"
-          ></TextInput>
-
+          <Text style={{ color: "white", fontSize: 18, top: 10 }}>
+            Are you sure you want to log out ?
+          </Text>
+          </View>
+          <View style ={styles.btnContainer}>
+          <TouchableOpacity onPress={() => Navigation.navigate("OnBoarding")}
+          style={styles.button1}>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => Navigation.navigate("OnBoarding")}
           style={styles.button2}>
-            <Text style={styles.buttonText1}>Join Room</Text>
+            <Text style={styles.buttonText1}>Log Out</Text>
           </TouchableOpacity>
+          </View>
         </View>
       </Modal>
   );
@@ -50,50 +55,61 @@ const styles = StyleSheet.create({
     margin: 0,
     justifyContent: "flex-end",
   },
+
   container1: {
     justifyContent: "space-around",
     alignItems: "center",
-    height: windowHeight * 0.4,
+    height: windowHeight * 0.3,
     width: "100%",
     backgroundColor: "#1B1130",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
+  txtContainer:{
+    width:'90%',
+    justifyContent:'center',
+    alignItems:'center',
+    gap:15,
+  },
   text:{
-    color: "white", 
+    color: "white",
     fontSize: 24,
     fontWeight:'bold',
-     top: 10 
+    top: 10
   },
-  input: {
-    color: "white",
-    fontSize: 20,
-    borderWidth: 1,
-    borderColor: "#915DFF",
-    height: "20%",
-    width: "90%",
-    borderRadius: 18,
-    paddingHorizontal: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
+  text1:{
+    color: "#7B7979",
+    fontSize: 18,
+    top: 10
+  },
+  btnContainer:{
+    flexDirection:'row',
+    gap:15,
   },
   button1: {
-    width: "50%",
-    backgroundColor: "#915DFF",
-    height: 64,
-    marginTop: 120,
+    width: "40%",
+    backgroundColor: "#1B1130",
+    height: 62,
     borderRadius: 18,
+    borderColor:'#915DFF',
+    borderWidth:2,
     justifyContent: "center",
     alignItems: "center",
   },
   button2: {
-    width: "50%",
+    width: "40%",
     backgroundColor: "#915DFF",
-    height: 64,
+    height: 62,
     borderRadius: 18,
+    borderColor:'#915DFF',
+    borderWidth:2,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonText: {
+    color: "#915DFF",
+    fontSize: 20,
+    fontWeight: "bold",
   },
   buttonText1: {
     color: "#fff",
@@ -101,5 +117,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
-export default JoinRoomModal;
+export default LogoutModal;
