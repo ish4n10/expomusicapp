@@ -48,7 +48,7 @@ export default function SlidingPanel() {
            
            <View style = {styles.btnContainer}>
            <TouchableOpacity
-            style={[styles.button]}
+            style={styles.button}
           >
             <Text style={styles.buttonText}> Add Friend</Text>
             <FontAwesomeIcon

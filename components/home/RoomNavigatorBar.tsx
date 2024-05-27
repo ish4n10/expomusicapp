@@ -1,9 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
+import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native"
 import React, { useState } from "react"
+import { RootStackParamList } from "../types/navigation";
 
 export default function RoomNavigatorBar( {setHomeTab} : {setHomeTab:any}) {
-  const Navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [color, setColor] = useState(true)
   return (
     <View style={styles.topBarContainer}>

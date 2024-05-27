@@ -7,10 +7,10 @@ import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import SlidingPanel from './SlidingPanel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-export default function InsideRoomScreen() {
+export default function InsideRoom() {
 
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [location, setLocation] = useState();
+  const [errorMsg, setErrorMsg] = useState<string>();
 
   useEffect(() => {
     (

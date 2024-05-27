@@ -9,12 +9,13 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { windowHeight } from "./common/Dimension";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { text } from '@fortawesome/fontawesome-svg-core';
+import { RootStackParamList } from "./types/navigation";
 
 function LogoutModal({open, setOpen} : {open:any , setOpen: any}) {
-  const Navigation = useNavigation();
-  const [color, setColor] = useState(true);
+  const navigation = useNavigation<any>();
+  const [color, setColor] = useState<boolean>(true);
   return (
     <Modal
         isVisible={open}
@@ -36,11 +37,11 @@ function LogoutModal({open, setOpen} : {open:any , setOpen: any}) {
           </Text>
           </View>
           <View style ={styles.btnContainer}>
-          <TouchableOpacity onPress={() => Navigation.navigate("OnBoarding")}
+          <TouchableOpacity onPress={() => setOpen(!open)}
           style={styles.button1}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Navigation.navigate("OnBoarding")}
+          <TouchableOpacity onPress={() => navigation.navigate("OnBoarding")}
           style={styles.button2}>
             <Text style={styles.buttonText1}>Log Out</Text>
           </TouchableOpacity>

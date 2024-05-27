@@ -34,6 +34,7 @@ function JoinRoomModal({open, setOpen} : {open:any , setOpen: any}) {
             placeholder="Enter room code"
             placeholderTextColor="#36225F"
             keyboardType="number-pad"
+            textAlign="center"
           ></TextInput>
 
           <TouchableOpacity onPress={() => Navigation.navigate("OnBoarding")}

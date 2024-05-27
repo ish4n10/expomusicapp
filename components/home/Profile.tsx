@@ -6,7 +6,7 @@ import { faPen,faGear,faChevronRight,faCircleQuestion,faLock ,faRightFromBracket
 import NavBar from "../common/AppNavBar"
 import LogoutModal from '../LogoutModal'
 export default function Profile() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [openLogoutModal, setOpenLogoutModal] = useState(false);
   return (
     <View style={styles.container}>

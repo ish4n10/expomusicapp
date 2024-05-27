@@ -7,7 +7,7 @@ import { faGoogle,faFacebook  } from '@fortawesome/free-brands-svg-icons';
 
 
 export default function OnBoarding1() {
-  const Navigation = useNavigation()
+  const Navigation = useNavigation<any>()
   return (
     <View style={styles.mainContainer}>
       <View style={styles.svgContainer}>

@@ -28,8 +28,6 @@ function CreateRoom() {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatlistRef = useRef();
   const [value, setValue] = useState(0);
-  const [selected, setSelected] = useState();
-  const [open, setOpen] = useState(false);
   useEffect(() => {
     StatusBar.setBarStyle("light-content");
   });
@@ -176,8 +174,8 @@ function CreateRoom() {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={[styles.button]}
-          onPress={() => setOpen(!open)}
+          style={styles.button}
+          onPress={() => navigation.navigate('InsideRoom')}
         >
           <Text style={styles.buttonText}> Create Room </Text>
         </TouchableOpacity>

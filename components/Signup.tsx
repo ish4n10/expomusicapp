@@ -10,7 +10,7 @@ import {
   import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
   
   function Signup() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     return (
       <View style={styles.container}>
         <View style={styles.subContainer}>

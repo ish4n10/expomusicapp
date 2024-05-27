@@ -1,4 +1,5 @@
-import {  StatusBar,
+import {
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -7,32 +8,33 @@ import {  StatusBar,
   ScrollView,
   Image,
   FlatList,
-} from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import RoomNavigatorBar from "./RoomNavigatorBar"
-import NavBar from "../common/AppNavBar"
+} from "react-native";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import RoomNavigatorBar from "./RoomNavigatorBar";
+import NavBar from "../common/AppNavBar";
 import { useEffect, useState } from "react";
-import JoinRoomModal from "../JoinRoomModal"
+import JoinRoomModal from "../JoinRoomModal";
+import { RootStackParamList } from "../types/navigation";
 
 export default function Home() {
-  const navigation = useNavigation()
-  const [activeTab, setActiveTab] = useState("live")
-  const [rooms, setRooms] = useState([])
-  const [loading, setLoading] = useState(false)
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [activeTab, setActiveTab] = useState("live");
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [openJoinModal, setOpenJoinModal] = useState(false);
   const range = 6;
 
   useEffect(() => {
-    StatusBar.setHidden(false)
-    StatusBar.setTranslucent(false)
-    StatusBar.setBackgroundColor("#110B1F")
-    StatusBar.setBarStyle("light-content")
-    loadMoreRooms()
-  }, [])
+    StatusBar.setHidden(false);
+    StatusBar.setTranslucent(false);
+    StatusBar.setBackgroundColor("#110B1F");
+    StatusBar.setBarStyle("light-content");
+    loadMoreRooms();
+  }, []);
 
   const loadMoreRooms = () => {
-    if (loading || rooms.length >= range) return
-    setLoading(true)
+    if (loading || rooms.length >= range) return;
+    setLoading(true);
 
     const newRooms = Array.from({ length: range }, (_, i) => ({
       id: (rooms.length + i + 1).toString(),
@@ -40,16 +42,19 @@ export default function Home() {
       location: "Nigeria Falls",
       roomOwner: "Room Owner",
       participantsCount: 678,
-    }))
+    }));
 
-    setRooms((prevRooms) => [...prevRooms, ...newRooms])
-    setLoading(false)
-  }
+    setRooms((prevRooms) => [...prevRooms, ...newRooms]);
+    setLoading(false);
+  };
 
-  const renderRoom = ({ item }) => (
+  const renderRoom = ({ item }: { item: any }) => (
     <View style={styles.roomContainer}>
-      <TouchableOpacity onPress={()=>navigation.navigate('InsideRoom')}
-      activeOpacity={0.7} style={[styles.room]}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("InsideRoom")}
+        activeOpacity={0.7}
+        style={[styles.room]}
+      >
         <Image source={item.image} style={styles.img} />
         <View style={styles.room1}></View>
         <View style={styles.container1}>
@@ -85,7 +90,7 @@ export default function Home() {
         </View>
       </TouchableOpacity>
     </View>
-  )
+  );
 
   return (
     <View style={styles.container}>
@@ -101,13 +106,15 @@ export default function Home() {
       {activeTab === "join" && (
         <View style={styles.joinRoomContainer}>
           <TouchableOpacity
-          onPress={() => navigation.navigate('CreateRoom')}
-           style={styles.button}>
+            onPress={() => navigation.navigate("CreateRoom")}
+            style={styles.button}
+          >
             <Text style={styles.buttonText}> Create Room</Text>
           </TouchableOpacity>
           <TouchableOpacity
-           onPress={() => setOpenJoinModal(!openJoinModal)}
-           style={styles.button1}>
+            onPress={() => setOpenJoinModal(!openJoinModal)}
+            style={styles.button1}
+          >
             <Text style={styles.buttonText}> Join Room</Text>
           </TouchableOpacity>
           <JoinRoomModal open={openJoinModal} setOpen={setOpenJoinModal} />
@@ -115,7 +122,7 @@ export default function Home() {
       )}
       <NavBar />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -256,4 +263,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-})
+});

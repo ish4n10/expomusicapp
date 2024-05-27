@@ -3,7 +3,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Svg1 from "./svg/Svg1";
  
 export default function OnBoarding() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   return (
     <View style={styles.mainContainer}>
       <View style={styles.svgContainer}>

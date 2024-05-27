@@ -1,41 +1,45 @@
-import React from "react"
-import { StyleSheet, Text, TouchableOpacity, View, Image ,FlatList,StatusBar} from "react-native"
-import { NavigationContainer, useNavigation } from "@react-navigation/native"
-import { useEffect, useState } from "react"
-import NavBar from "../common/AppNavBar"
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  FlatList,
+  StatusBar,
+} from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import NavBar from "../common/AppNavBar";
 export default function FriendList() {
-    const [friends, setFriends] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const range = 10;
   useEffect(() => {
-    StatusBar.setHidden(false)
-    StatusBar.setTranslucent(false)
-    StatusBar.setBackgroundColor("#110B1F")
-    StatusBar.setBarStyle("light-content")
-    loadFriends()
-  }, [])
+    StatusBar.setHidden(false);
+    StatusBar.setTranslucent(false);
+    StatusBar.setBackgroundColor("#110B1F");
+    StatusBar.setBarStyle("light-content");
+    loadFriends();
+  }, []);
   const loadFriends = () => {
-    if (loading || friends.length >= range) return
-    setLoading(true)
+    if (loading || friends.length >= range) return;
+    setLoading(true);
 
     const friendId = Array.from({ length: range }, (_, i) => ({
       id: (friends.length + i + 1).toString(),
       image: require("./../../assets/person.jpg"),
       name: "Vaibhav Patil",
       location: "Sector 8",
+    }));
 
-    }))
-
-    setFriends((prevFriends) => [...prevFriends, ...friendId])
-    setLoading(false)
-  }
-  const renderFriend= ({ item }) => (
+    setFriends((prevFriends) => [...prevFriends, ...friendId]);
+    setLoading(false);
+  };
+  const renderFriend = ({ item }: { item: any }) => (
     <View style={styles.profileContainer}>
-        <View style = {styles.container1}>
-        <Image
-          source={item.image}
-          style={styles.img}
-        />
+      <View style={styles.container1}>
+        <Image source={item.image} style={styles.img} />
         <View style={styles.txtContainer}>
           <Text style={styles.text}>{item.name}</Text>
           <TouchableOpacity style={styles.editBtn}>
@@ -45,30 +49,29 @@ export default function FriendList() {
           </TouchableOpacity>
         </View>
       </View>
-      </View>
-  )
-  
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <FlatList
-          data={friends}
-          renderItem={renderFriend}
-          keyExtractor={(item) => item.id}
-          style={{ flex: 1, width: "100%" }}
-        />
-        <NavBar/>
+        data={friends}
+        renderItem={renderFriend}
+        keyExtractor={(item) => item.id}
+        style={{ flex: 1, width: "100%" }}
+      />
+      <NavBar />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent:'center',
+    justifyContent: "center",
     height: "100%",
     backgroundColor: "#110B1F",
     gap: 15,
-    
   },
   container1: {
     height: 90,
@@ -77,8 +80,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 10,
-    
-    
   },
   profileContainer: {
     height: 90,
@@ -87,7 +88,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 10,
-  
   },
   img: {
     height: 50,
@@ -114,4 +114,4 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "#7B7979",
   },
-})
+});
