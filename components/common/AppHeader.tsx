@@ -3,7 +3,7 @@ import { View, Text, StyleSheet} from "react-native";
 import { windowHeight, windowWidth } from "./Dimension";
 import { useNavigation } from "@react-navigation/native";
 export default function AppHeader() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     const headerName = navigation.getState()?.routes[navigation.getState()?.index].name;
     // useEffect(() => {
     // })

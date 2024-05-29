@@ -6,7 +6,7 @@ import { faHome,faUserGroup,faUser } from "@fortawesome/free-solid-svg-icons"
 
 
 export default function AppNavBar() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<any>()
   console.log(navigation.getState())
   const [activeButton, setActiveButton] = useState("home");
 
@@ -34,7 +34,7 @@ export default function AppNavBar() {
             Home
           </Text>
         </TouchableOpacity>
-
+d
         <TouchableOpacity
           onPress={() => {
             setActiveButton("Friends");
