@@ -16,6 +16,8 @@ import AppHeader from './components/common/AppHeader';
 import InsideRoomScreen from './components/InsideRoom';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   useEffect(() => {
@@ -29,7 +31,7 @@ export default function App() {
         animation: 'slide_from_right',
         header: () => <AppHeader />
       }}
-      initialRouteName="Onboarding">
+      initialRouteName="InsideRoom">
       <Stack.Screen
         name="OnBoarding"
         options={{
@@ -78,6 +80,7 @@ export default function App() {
         }}
         component={InsideRoomScreen}
       />
+      
     </Stack.Navigator>
 
   </NavigationContainer>
