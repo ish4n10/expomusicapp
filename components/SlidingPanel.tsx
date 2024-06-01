@@ -50,7 +50,7 @@ export default function SlidingPanel() {
            <TouchableOpacity
             style={styles.button}
           >
-            <Text style={styles.buttonText}> Add Friend</Text>
+            <Text style={styles.buttonText}>Add Friend</Text>
             <FontAwesomeIcon
             icon={faUserPlus}
             size={22}

@@ -12,7 +12,7 @@ import { windowHeight } from "./common/Dimension";
 import { useNavigation } from '@react-navigation/native';
 
 function JoinRoomModal({open, setOpen} : {open:any , setOpen: any}) {
-  const Navigation = useNavigation()
+  const navigation = useNavigation<any>()
   return (
     <Modal
         isVisible={open}
@@ -37,7 +37,7 @@ function JoinRoomModal({open, setOpen} : {open:any , setOpen: any}) {
             textAlign="center"
           ></TextInput>
 
-          <TouchableOpacity onPress={() => Navigation.navigate("OnBoarding")}
+          <TouchableOpacity onPress={() => navigation.navigate("OnBoarding")}
           style={styles.button2}>
             <Text style={styles.buttonText1}>Join Room</Text>
           </TouchableOpacity>

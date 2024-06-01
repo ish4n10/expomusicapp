@@ -6,6 +6,7 @@ export type RootStackParamList = {
     FriendList: any;
     InsideRoom: any;
     Signup: any;
-    CreateRoom: any; // Adjust this if you need to pass params
+    CreateRoom: any;
+    JoinRoomModal: any; // Adjust this if you need to pass params
     // Add other routes here as needed
   };

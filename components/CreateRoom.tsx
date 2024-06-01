@@ -9,25 +9,21 @@ import {
   TouchableOpacity,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  TextInput,
   StatusBar,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import JoinRoomModal from "./JoinRoomModal";
-
 import RadioForm from "react-native-simple-radio-button";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import JoinRoom from "./JoinRoomModal";
-import Modal from "react-native-modal";
+import { useNavigation } from "@react-navigation/native";
 import { windowHeight } from "./common/Dimension";
 
 function CreateRoom() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const screenWidth = Dimensions.get("window").width;
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const flatlistRef = useRef();
-  const [value, setValue] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [value, setValue] = useState<number>(0);
+  const flatlistRef = useRef<any>();
+
   useEffect(() => {
     StatusBar.setBarStyle("light-content");
   });
@@ -69,13 +65,13 @@ function CreateRoom() {
     { label: "Public", value: 1 },
   ];
 
-  const getItemLayout = (data, index) => ({
+  const getItemLayout = ({ data, index }: { data: any; index: number }) => ({
     length: screenWidth,
     offset: screenWidth * index,
     index: index,
   });
 
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
       <View style={{ width: "auto", margin: "auto" }}>
         <Image
@@ -107,7 +103,7 @@ function CreateRoom() {
               bottom: 5,
               marginHorizontal: 6,
             }}
-          ></View>
+          />
         );
       } else {
         return (
@@ -120,7 +116,7 @@ function CreateRoom() {
               borderRadius: 5,
               marginHorizontal: 6,
             }}
-          ></View>
+          />
         );
       }
     });
@@ -141,7 +137,7 @@ function CreateRoom() {
         <FlatList
           data={imgData}
           ref={flatlistRef}
-          getItemLayout={getItemLayout}
+          getItemLayout={() => getItemLayout}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           horizontal
@@ -158,7 +154,7 @@ function CreateRoom() {
           <RadioForm
             radio_props={items}
             initial={value}
-            onPress={(value) => setValue(value)}
+            onPress={({ value }: { value: any }) => setValue(value)}
             labelColor="white"
             selectedLabelColor="white"
             buttonColor="#915DFF"
@@ -175,9 +171,9 @@ function CreateRoom() {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('InsideRoom')}
+          onPress={() => navigation.navigate("InsideRoom")}
         >
-          <Text style={styles.buttonText}> Create Room </Text>
+          <Text style={styles.buttonText}>Create Room </Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -22,11 +22,16 @@
           "ACCESS_FINE_LOCATION",
           "ACCESS_COARSE_LOCATION"
         ]
-      }
-      
+      },
+      "package": "com.ish4n10.expomusicapp"
     },
     "web": {
       "favicon": "./assets/image1.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c71b4993-84f1-41c9-9c47-cdf5920ac061"
+      }
     }
   }
 }

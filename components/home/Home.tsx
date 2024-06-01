@@ -7,21 +7,20 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import RoomNavigatorBar from "./RoomNavigatorBar";
 import NavBar from "../common/AppNavBar";
 import { useEffect, useState } from "react";
 import JoinRoomModal from "../JoinRoomModal";
-import { RootStackParamList } from "../types/navigation";
 
 export default function Home() {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const [activeTab, setActiveTab] = useState("live");
-  const [rooms, setRooms] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [openJoinModal, setOpenJoinModal] = useState(false);
-  const [range, setRange] = useState<number>(6); // Fixed initialization
-  
+  const navigation = useNavigation<any>();
+  const [activeTab, setActiveTab] = useState<string>("live");
+  const [rooms, setRooms] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [openJoinModal, setOpenJoinModal] = useState<boolean>(false);
+  const [range, setRange] = useState<number>(6);
+
   useEffect(() => {
     StatusBar.setHidden(false);
     StatusBar.setTranslucent(false);
@@ -42,55 +41,56 @@ export default function Home() {
       participantsCount: 678,
     }));
 
-    setRooms((prevRooms) => [...prevRooms, ...newRooms]);
+    setRooms(({ prevRooms }: { prevRooms: any }) => [
+      ...prevRooms,
+      ...newRooms,
+    ]);
     setLoading(false);
   };
 
-  const renderRoom = ({ item }: { item: any }) => {
-    return (
-      <View style={styles.roomContainer}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("InsideRoom")}
-          activeOpacity={0.7}
-          style={[styles.room]}
-        >
-          <Image source={item.image} style={styles.img} />
-          <View style={styles.room1}></View>
-          <View style={styles.container1}>
-            <View style={styles.location}>
-              <Text style={styles.text}>{item.location}</Text>
+  const renderRoom = ({ item }: { item: any }) => (
+    <View style={styles.roomContainer}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("InsideRoom")}
+        activeOpacity={0.7}
+        style={[styles.room]}
+      >
+        <Image source={item.image} style={styles.img} />
+        <View style={styles.room1}></View>
+        <View style={styles.container1}>
+          <View style={styles.location}>
+            <Text style={styles.text}>{item.location}</Text>
+          </View>
+          <View style={styles.container2}>
+            <View style={styles.person}>
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img1}
+              />
+              <Text style={styles.text1}>{item.roomOwner}</Text>
             </View>
-            <View style={styles.container2}>
-              <View style={styles.person}>
-                <Image
-                  source={require("./../../assets/person.jpg")}
-                  style={styles.img1}
-                />
-                <Text style={styles.text1}>{item.roomOwner}</Text>
-              </View>
-              <View style={styles.person1}>
-                <Image
-                  source={require("./../../assets/person.jpg")}
-                  style={styles.img2}
-                />
-                <Image
-                  source={require("./../../assets/person.jpg")}
-                  style={styles.img2}
-                />
-                <Image
-                  source={require("./../../assets/person.jpg")}
-                  style={styles.img2}
-                />
-                <View style={styles.count}>
-                  <Text style={styles.text2}>{item.participantsCount}</Text>
-                </View>
+            <View style={styles.person1}>
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img2}
+              />
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img2}
+              />
+              <Image
+                source={require("./../../assets/person.jpg")}
+                style={styles.img2}
+              />
+              <View style={styles.count}>
+                <Text style={styles.text2}>{item.participantsCount}</Text>
               </View>
             </View>
           </View>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
@@ -109,13 +109,13 @@ export default function Home() {
             onPress={() => navigation.navigate("CreateRoom")}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Create Room</Text>
+            <Text style={styles.buttonText}> Create Room</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setOpenJoinModal(!openJoinModal)}
             style={styles.button1}
           >
-            <Text style={styles.buttonText}>Join Room</Text>
+            <Text style={styles.buttonText}> Join Room</Text>
           </TouchableOpacity>
           <JoinRoomModal open={openJoinModal} setOpen={setOpenJoinModal} />
         </View>

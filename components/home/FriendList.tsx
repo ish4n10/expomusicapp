@@ -12,7 +12,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import NavBar from "../common/AppNavBar";
 export default function FriendList() {
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const range = 10;
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function FriendList() {
       location: "Sector 8",
     }));
 
-    setFriends((prevFriends) => [...prevFriends, ...friendId]);
+    setFriends(({prevFriends}: {prevFriends: any}) => [...prevFriends, ...friendId]);
     setLoading(false);
   };
   const renderFriend = ({ item }: { item: any }) => (

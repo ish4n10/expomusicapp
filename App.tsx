@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { RootStackParamList } from "./components/types/navigation";
+import { StatusBar } from "react-native";
+
 import CreateRoom from "./components/CreateRoom";
 import Home from "./components/home/Home";
 import OnBoarding from "./components/OnBoarding";
 import OnBoarding1 from "./components/OnBoarding1";
 import FriendList from "./components/home/FriendList";
-import JoinRoomModal from "./components/JoinRoomModal";
 import Signup from "./components/Signup";
 import Profile from "./components/home/Profile";
-import { StatusBar } from "react-native";
 import AppHeader from "./components/common/AppHeader";
-import InsideRoom from "./components/InsideRoom";
-import { RootStackParamList } from "./components/types/navigation";
+import InsideRoomScreen from "./components/InsideRoom";
+
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function App() {
           options={{
             headerShown: false,
           }}
-          component={InsideRoom}
+          component={InsideRoomScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
