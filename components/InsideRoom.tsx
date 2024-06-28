@@ -1,42 +1,73 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPhone, faMessage, faHeadphonesSimple } from '@fortawesome/free-solid-svg-icons';
-import MapView, { Marker, Polyline } from "react-native-maps";
+import {
+  faPhone,
+  faMessage,
+  faHeadphonesSimple,
+} from "@fortawesome/free-solid-svg-icons";
+import MapView, { Marker, Polyline, MapViewProps, PROVIDER_GOOGLE } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
 import * as Location from "expo-location";
-import SlidingPanel from './SlidingPanel';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SlidingPanel from "./SlidingPanel";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+
+let MapViewMob, MarkerMob, MapViewDirectionsMob;
+
+if (Platform.OS === "android" || Platform.OS === "ios") {
+  MapViewMob = require("react-native-maps").default;
+  MarkerMob = require("react-native-maps").Marker;
+  MapViewDirectionsMob = require("react-native-maps-directions").default;
+}
+
+
+
 
 export default function InsideRoomScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [location, setLocation] = useState<any>();
   const [errorMsg, setErrorMsg] = useState<any>();
   const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
   const [destination] = useState<any>({
-    latitude: 22.032420, 
-    longitude: 82.644527, 
+    latitude: 22.03242,
+    longitude: 82.644527,
   });
 
   useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
-        return;
-      }
+    const interval = setInterval(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== "granted") {
+          setErrorMsg("Permission to access location was denied");
+          return;
+        }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+        console.log(location);
 
-      const coords = [
-        { latitude: location.coords.latitude, longitude: location.coords.longitude },
-        { latitude: destination.latitude, longitude: destination.longitude }
-      ];
+        const coords = [
+          {
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+          },
+          { latitude: destination.latitude, longitude: destination.longitude },
+        ];
 
-      setRouteCoordinates(coords);
-    })();
-  }, []);
+        setRouteCoordinates(coords);
+      })();
+    }, 2000);
+    return () => clearInterval(interval);
+  });
 
   if (errorMsg) {
     return (
@@ -59,6 +90,7 @@ export default function InsideRoomScreen() {
       <View style={styles.container}>
         <MapView
           style={styles.map}
+          provider={PROVIDER_GOOGLE}
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
@@ -80,36 +112,35 @@ export default function InsideRoomScreen() {
             description={"Hardcoded Destination"}
             pinColor="blue"
           />
-          <Polyline
-            coordinates={routeCoordinates}
-            strokeColor="#d74890" 
-            // strokeColors={[
-            //   '#7F0000',
-            // ]}
-            strokeWidth={2}
-          />
+         <MapViewDirectionsMob
+                  origin={location}
+                  destination={destination}
+                  strokeColor={"red"}
+                  tappable={true}
+                  apikey={""}
+                  strokeWidth={14}
+                />
+          {/* <MapViewDirections
+            origin={location}
+            destination={destination}
+            apikey="AIzaSyCMgzNknCnEG0oL8UBhSMCyOl6DjzyHVgM" // insert your API Key here
+            strokeWidth={4}
+            strokeColor="#000"
+          /> */}
         </MapView>
         <View style={styles.container1}>
           <View style={styles.icon}>
             <TouchableOpacity style={styles.circle}>
-              <FontAwesomeIcon
-                icon={faPhone}
-                size={25}
-                color='#fff'
-              />
+              <FontAwesomeIcon icon={faPhone} size={25} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.circle}>
-              <FontAwesomeIcon
-                icon={faMessage}
-                size={25}
-                color='#fff'
-              />
+              <FontAwesomeIcon icon={faMessage} size={25} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.circle}>
               <FontAwesomeIcon
                 icon={faHeadphonesSimple}
                 size={25}
-                color='#fff'
+                color="#fff"
               />
             </TouchableOpacity>
           </View>
@@ -128,8 +159,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   map: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
+    ...StyleSheet.absoluteFillObject,
+    // height: windowHeight,
+    // width: windowWidth,
   },
   loadingText: {
     fontSize: 18,
@@ -140,17 +173,17 @@ const styles = StyleSheet.create({
     color: "red",
   },
   container1: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
+    width: "100%",
+    height: "100%",
+    position: "absolute",
     justifyContent: "center",
     alignItems: "flex-end",
   },
   icon: {
     justifyContent: "space-evenly",
     alignItems: "center",
-    width: '25%',
-    height: '35%',
+    width: "25%",
+    height: "35%",
   },
   circle: {
     justifyContent: "center",

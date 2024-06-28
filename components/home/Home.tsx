@@ -15,11 +15,15 @@ import JoinRoomModal from "../JoinRoomModal";
 
 export default function Home() {
   const navigation = useNavigation<any>();
-  const [activeTab, setActiveTab] = useState<string>("live");
+  const [activeTab, setActiveTab] = useState("live");
   const [rooms, setRooms] = useState<any>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [openJoinModal, setOpenJoinModal] = useState<boolean>(false);
-  const [range, setRange] = useState<number>(6);
+  const [loading, setLoading] = useState(false);
+  const [openJoinModal, setOpenJoinModal] = useState(false);
+  const [range, setRange] = useState(0);
+
+  // useEffect(() => {
+  //   setRange(range => 6);
+  // })
 
   useEffect(() => {
     StatusBar.setHidden(false);
@@ -53,7 +57,7 @@ export default function Home() {
       <TouchableOpacity
         onPress={() => navigation.navigate("InsideRoom")}
         activeOpacity={0.7}
-        style={[styles.room]}
+        style={styles.room}
       >
         <Image source={item.image} style={styles.img} />
         <View style={styles.room1}></View>
@@ -95,7 +99,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <RoomNavigatorBar setHomeTab={setActiveTab} />
-      {activeTab === "live" && (
+      {activeTab == "live" && (
         <FlatList
           data={rooms}
           renderItem={renderRoom}
@@ -103,7 +107,7 @@ export default function Home() {
           style={{ flex: 1, width: "100%" }}
         />
       )}
-      {activeTab === "join" && (
+      {activeTab == "join" && (
         <View style={styles.joinRoomContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("CreateRoom")}

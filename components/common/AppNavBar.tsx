@@ -34,7 +34,6 @@ export default function AppNavBar() {
             Home
           </Text>
         </TouchableOpacity>
-d
         <TouchableOpacity
           onPress={() => {
             setActiveButton("Friends");

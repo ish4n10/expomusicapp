@@ -13,6 +13,8 @@ import Signup from "./components/Signup";
 import Profile from "./components/home/Profile";
 import AppHeader from "./components/common/AppHeader";
 import InsideRoomScreen from "./components/InsideRoom";
+import TestMapsApi from "./components/TestMapsApi";
+import MediaPlayer from "./components/MediaPlayer";
 
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -59,6 +61,17 @@ export default function App() {
             headerShown: false,
           }}
           component={InsideRoomScreen}
+        />
+        <Stack.Screen
+          name="TestMapsApi"
+          options={{
+            headerShown: false,
+          }}
+          component={TestMapsApi}
+        />
+        <Stack.Screen
+          name="MediaPlayer"
+          component={MediaPlayer}
         />
       </Stack.Navigator>
     </NavigationContainer>
